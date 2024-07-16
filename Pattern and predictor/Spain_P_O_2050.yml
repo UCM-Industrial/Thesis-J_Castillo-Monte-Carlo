@@ -1,0 +1,61 @@
+scenario_name: Spain # Name of the scenario
+scenario_description: Spain # Description of the scenario
+#DATA FORMAT : DATE, GENERATION, TECNOLOGY
+
+# Archive with the data
+data: data/Prod_by_day.csv # Path to the archive from the python main.py or just put the full path
+
+freq: 'D' # Frequency of the data M=Month D=Day 1H= 1Hour 15m=15 minutes
+groupby: Day # Groupby to use in the data
+
+# Columns to use IN YOUR DATABASE PLEASE USE THE SAME NAME OF THE COLUMNS
+date: Date # Date of the data
+#zones: LOCATION # Zones
+
+pattern: Pattern.csv # Path to the pattern file
+objetive_date: 12/31/2050 # Date to reach the objetive USE DATE FORMAT MM/DD/YYYY
+
+#model: prophet # Model to use
+growth: linear # Growth of the model logistic, linear, just for prophet
+target_production: 748416 #1122624 
+
+plot: True #Plot the results
+error_range: True 
+merge_csv: True # Merge the csv files
+
+energy: # Energies to predict
+  Predict: # PUT HERE THE NAME OF THE ENERGY YOU WANT TO PREDICT
+    - eol: 
+      - 0.4523 # PERCENTAGE OF THE ENERGY TO PREDICT
+      - linear
+    - hid:
+      - 0.1192
+      - linear
+    - solFot:
+      - 0.2839
+      - linear
+    - solTer:
+      - 0.0091
+      - linear
+    - termRenov: # Biomass
+      - 0.0150
+      - linear
+    - Nuclear:
+      - 0.120 # PERCENTAGE OF THE ENERGY TO PREDICT
+      - custom
+      - data:
+          - 2023-12-31 00:00:00 # Initial power
+          - 2027-12-31 00:00:00
+          - 2028-12-31 00:00:00
+          - 2030-12-31 00:00:00  # -303061
+          - 2031-12-31 00:00:00
+          - 2035-12-31 00:00:00 # -285686   
+      - values:
+          - 168479 # Initial power
+          - -23913 #/2027-12-31
+          - -23795 #/2028-12-31
+          - -48701 #/2030-12-31
+          - -23582 #/2031-12-31 
+          - -48488 #/2035-12-31 
+
+
