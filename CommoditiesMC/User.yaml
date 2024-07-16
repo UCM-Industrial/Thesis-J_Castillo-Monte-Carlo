@@ -1,0 +1,46 @@
+#User input:
+#CO2: DACG = Direct Air Captura by Global Thermostat | DACC = Direct Air Capture by Climeworks | A = Amines
+#H2O: MED = Multiple Effect Destilation | MFD = Multistage Flash Destilation | IO = Inverse Osmosis
+#N2: PSA = Presure Swing Adsorption
+#H2: AE = Alkaline Electrolysis | PEM = Proton Exchange Membrane
+#NH3: HB = Haber-Bosch
+#CH4: M = Metanization
+
+Path_Database: Forecast.xlsx #Example: 'C:/Users/Enzo/Desktop/File_Name.xlsx' or /Commodities/File_Name.csv or .xlsx
+Database_Unit: 'MW' ##Input electricity unit: 'GW', 'MW' or 'kW'
+Electricity_Output: 'MW' #Output electricity unit. 'GW' , 'MW' or 'kW'
+Random_Value: True
+
+Number_of_simulation: 100
+
+Fuels_Burning:
+  H2: 0.0
+  NH3: 0.0
+  CH4: 1.0
+
+Production_Share:
+  CO2:
+    - 0.0 #Production percentage
+    - A #Technology for production
+  H2O:
+    - 0.0
+    - MFD
+  H2:
+    - 0.0
+    - AE
+    #Commodity necessary to produce H2
+    - H2O: MED
+  NH3:
+    - 0.0
+    - HB
+    #Commodities necessary to produce NH3
+    - H2O: MED
+    - H2: AE
+    - N2: PSA
+  CH4:
+    - 1.0
+    - M
+    #Commodities necessary to produce CH4
+    - H2O: MED
+    - H2: AE
+    - CO2: DACG

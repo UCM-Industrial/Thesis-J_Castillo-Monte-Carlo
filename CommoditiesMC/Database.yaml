@@ -1,0 +1,54 @@
+Electricity_Consumption:
+    CO2: #Commodity. Metric consuption: (kWh/kg)
+        DACG: [0.15, 0.26] #Technology production:                #-----> [1] Mora Constanza
+        DACC: [0.2, 0.3] #[Lower limit, Upper limit]              #-----> [1] 
+        A: [0.14, 0.15]                                           #-----> [1] 
+    H2O: #(kWh/lt)
+        MED: [0.0057, 0.0078]                                     #-----> [1] 
+        MFD: [0.0127, 0.015]                                      #-----> [1] 
+        IO: [0.0025, 0.004]                                       #-----> [1] 
+    N2: #(kWh/kg)
+        PSA: [0.0317] #Average value                              #-----> [2] 
+    H2: #(kWh/kg)
+        AE: [45, 51]                                              #-----> [1]
+        PEM: [47.5, 55.5]                                         #-----> [1]
+    NH3: #(kWh/kg)
+        HB: [0.6]                                                 #-----> [2]
+    CH4: #(kWh/kg)
+        M: [0.97]                                                 #-----> [3] https://www.sciencedirect.com/science/article/pii/S0016236123013923?via%3Dihub Fig. 7, Pág. 8
+
+Mass_Balance:
+    H2: #Commodity
+        H2O: [15.06] #Dependent commodity. (lt)
+    NH3:
+        H2O: [2.6691] #lt
+        H2: [0.1776] #kg
+        N2: [0.822] #kg
+    CH4:
+        H2O: [7.495] #lt                                          #-----> [] https://www.concawe.eu/publication/e-fuels-a-techno-economic-assessment-of-european-domestic-production-and-imports-towards-2050/ Fig. Pag.
+        H2: [0.4995] #kg
+        CO2: [3.0] #kg
+
+Commodities_to_Electricity:
+#Inputs: SOFC = Solid Oxid Fuel Cell | PEMFC = Proton Membrane Exchange Fuel Cell | CCGT = Combined Cycle Gas Turbine
+    H2:
+        #SOFC: #Technology conversion
+        #- [0.35, 0.43] #Efficiency process (%)
+        #- [33.3] #Energy Density (kWh)
+        PEMFC:
+        - [0.53, 0.58]
+        - [33.3]
+    NH3:
+        SOFC:
+        - [0.6]
+        - [5.166]
+        #CCGT:
+        #- [0.5, 0.6]
+        #- [5.166]
+    CH4:
+        #SOFC:
+        #- [0.35, 0.43]
+        #- [15.17]
+        PEMFC:
+        - [0.53, 0.58]
+        - [15.17]
